@@ -1,0 +1,11 @@
+model Grade {
+    code      String
+    level     Int    @default(1)
+    baseSpeed Float  @map("base_speed")
+    price     Float
+    image     String
+    name      String
+
+    @@id([code, level])
+    @@map("Grades")
+}
