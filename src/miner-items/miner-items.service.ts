@@ -15,11 +15,15 @@ export class MinerItemsService {
   }
 
   findAll() {
-    return `This action returns all minerItems`;
+    return this.prisma.minerItems.findMany()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} minerItem`;
+    return this.prisma.minerItems.findUnique({
+      where: {
+        id
+      }
+    })
   }
 
   update(id: number, updateMinerItemInput: UpdateMinerItemInput) {
@@ -32,6 +36,10 @@ export class MinerItemsService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} minerItem`;
+    return this.prisma.minerItems.delete({
+      where: {
+        id
+      }
+    })
   }
 }

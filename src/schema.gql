@@ -63,7 +63,7 @@ type MinerItem {
   """Mining spped per hour"""
   speed: Float!
 
-  """Type (COIN, USDT, NFT"""
+  """Type (COIN, USDT, NFT)"""
   type: String!
 }
 

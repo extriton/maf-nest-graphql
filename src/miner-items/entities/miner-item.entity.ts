@@ -14,7 +14,7 @@ export class MinerItem {
   @Field(() => String, { description: 'Unique name' })
   name: string;
 
-  @Field(() => String, { description: 'Type (COIN, USDT, NFT' })
+  @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TMinerItemType;
 
   @Field(() => Int, { description: 'Level' })

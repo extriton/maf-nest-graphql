@@ -19,6 +19,8 @@ export class MinerItemsModule implements OnModuleInit {
     const minerItemsCount = await this.prisma.minerItems.count()
 
     if (minerItemsCount === 0) {
+      console.log('Store initial MinerItems data...')
+
       for (const minerItem of initialData) {
         try {
           await this.prisma.minerItems.create({ data: minerItem })
