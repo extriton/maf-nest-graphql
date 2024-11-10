@@ -1,0 +1,29 @@
+model MinerItems {
+    id          Int                 @id @default(autoincrement())
+    code        String              
+    name        String              @unique
+    type        MinerItemType       @default(COIN)
+    level       Int                 @default(1)
+    nextLevel   Boolean             @default(true)
+    speed       Float
+    cost        Float
+    rarity      MinerItemTypeRarity @default(common)
+    image       String
+    description String
+
+    @@unique([code, level, type])
+}
+
+enum MinerItemType {
+    COIN
+    USDT
+    NFT
+}
+
+enum MinerItemTypeRarity {
+    common
+    uncommon
+    rare
+    epic
+    legendary
+}

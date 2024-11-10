@@ -1,0 +1,112 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateMinerItemInput {
+  """Unique code"""
+  code: String!
+
+  """Cost"""
+  cost: Float!
+
+  """Description"""
+  description: String!
+
+  """Image hash in determinated network"""
+  image: String!
+
+  """Level"""
+  level: Int!
+
+  """Unique name"""
+  name: String!
+
+  """Next level available?"""
+  nextLevel: Boolean!
+
+  """Rarity (common, uncommon, rare, epic, legendary)"""
+  rarity: String!
+
+  """Mining spped per hour"""
+  speed: Float!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
+type MinerItem {
+  """Unique code"""
+  code: String!
+
+  """Cost"""
+  cost: Float!
+
+  """Description"""
+  description: String!
+  id: Int!
+
+  """Image hash in determinated network"""
+  image: String!
+
+  """Level"""
+  level: Int!
+
+  """Unique name"""
+  name: String!
+
+  """Next level available?"""
+  nextLevel: Boolean!
+
+  """Rarity (common, uncommon, rare, epic, legendary)"""
+  rarity: String!
+
+  """Mining spped per hour"""
+  speed: Float!
+
+  """Type (COIN, USDT, NFT"""
+  type: String!
+}
+
+type Mutation {
+  createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
+  removeMinerItem(id: Int!): MinerItem!
+  updateMinerItem(updateMinerItemItem: UpdateMinerItemInput!): MinerItem!
+}
+
+type Query {
+  minerItem(id: Int!): MinerItem!
+  minerItems: [MinerItem!]!
+}
+
+input UpdateMinerItemInput {
+  """Unique code"""
+  code: String
+
+  """Cost"""
+  cost: Float
+
+  """Description"""
+  description: String
+  id: Int!
+
+  """Image hash in determinated network"""
+  image: String
+
+  """Level"""
+  level: Int
+
+  """Unique name"""
+  name: String
+
+  """Next level available?"""
+  nextLevel: Boolean
+
+  """Rarity (common, uncommon, rare, epic, legendary)"""
+  rarity: String
+
+  """Mining spped per hour"""
+  speed: Float
+
+  """Type (COIN, USDT, NFT)"""
+  type: String
+}

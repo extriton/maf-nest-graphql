@@ -1,0 +1,1 @@
+export type TMinerItemRarity = ('common' | 'uncommon' | 'rare' | 'epic' | 'legendary')

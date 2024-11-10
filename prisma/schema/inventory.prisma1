@@ -1,0 +1,65 @@
+model Inventory {
+    id     Int  @id @default(autoincrement())
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @map("user_id")
+    
+
+    @@map("UserItems")
+}
+
+// 		code: {
+// 			type: DataTypes.STRING,
+// 			allowNull: false,
+// 			required: true
+// 		},
+// 		name: {
+// 			type: DataTypes.STRING,
+// 			allowNull: false,
+// 			required: true
+// 		},
+// 		type: {									// 1 - MINER, 2 - FIGHTER
+// 			type: DataTypes.INTEGER,
+// 			allowNull: false,
+// 			defaultValue: 1
+// 		},
+// 		subtype: {
+// 			type: DataTypes.INTEGER,
+// 			allowNull: false,
+// 			defaultValue: 0
+// 		},
+// 		currency: {								// 1 - COIN, 2 - USDT, 3 - NFT
+// 			type: DataTypes.INTEGER,
+// 			allowNull: false,
+// 			defaultValue: 1
+// 		},
+// 		level: {								// 1 - 5
+// 			type: DataTypes.INTEGER,
+// 			allowNull: false,
+// 			defaultValue: 1
+// 		},
+// 		baseSpeed: {
+// 			type: DataTypes.FLOAT,
+// 			allowNull: false,
+// 			required: true
+// 		},
+// 		speed: {
+// 			type: DataTypes.FLOAT,
+// 			allowNull: false,
+// 			required: true
+// 		},
+// 		price: {
+// 			type: DataTypes.FLOAT,
+// 			allowNull: false,
+// 			required: true
+// 		},
+// 		rarity: {								// 'common', 'uncommon', 'rare', 'epic', 'legendary'
+// 			type: DataTypes.STRING,
+// 			allowNull: false,
+// 			required: true
+// 		},
+// 		image: {
+// 			type: DataTypes.STRING,
+// 			allowNull: false,
+// 			required: true
+// 		}
+//     }

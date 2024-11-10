@@ -1,0 +1,21 @@
+model Payment {
+    id       String          @id @default(cuid())
+    user     User            @relation(fields: [userId], references: [id])
+    userId   Int             @map("user_id")
+    type     Int             @default(0)
+    currency PaymentCurrency @default(TON)
+    ammount  Float           @default(0)
+    status   OrderStatus     @default(created)
+
+    @@map("Payments")
+}
+
+enum PaymentCurrency {
+    TON
+    USDT
+}
+
+enum OrderStatus {
+    created
+    processed
+}

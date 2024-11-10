@@ -1,0 +1,18 @@
+model User {
+    id               Int      @id @default(autoincrement())
+    tgId             Int      @unique @map("tg_id")
+    name             String?
+    coinBalance      Float    @default(0) @map("coin_balance")
+    totalCoinBalance Float    @default(0) @map("total_coin_balance")
+    isPremium        Boolean  @default(false) @map("is_premium")
+    isBanned         Boolean  @default(false) @map("is_banned")
+    lastClaimAt      DateTime @default(now())
+    referTgId        Int      @map("refer_tg_id")
+    referCoinBalance Float    @default(0)
+
+    payments Payment[]
+    slots    Slot[]
+    inventories Inventory[]
+
+    @@map("Users")
+}

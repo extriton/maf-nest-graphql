@@ -1,0 +1,4 @@
+model WorkingData {
+    id          Int @id @default(autoincrement())
+    lastTonTxAt Int @map("last_ton_tx_at")
+}
