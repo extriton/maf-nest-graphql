@@ -1,0 +1,28 @@
+model FighterItems {
+    id          Int               @id @default(autoincrement())
+    code        String
+    name        String            @unique
+    type        FighterItemType   @default(COIN)
+    level       Int               @default(1)
+    nextLevel   Boolean           @default(true)
+    cost        Float
+    rarity      FighterItemRarity @default(common)
+    image       String
+    description String
+
+    @@unique([code, level, type])
+}
+
+enum FighterItemType {
+    COIN
+    USDT
+    NFT
+}
+
+enum FighterItemRarity {
+    common
+    uncommon
+    rare
+    epic
+    legendary
+}
