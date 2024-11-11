@@ -6,11 +6,11 @@ input CreateFighterItemInput {
   """Unique code"""
   code: String!
 
+  """Description"""
+  comment: String!
+
   """Cost"""
   cost: Float!
-
-  """Description"""
-  description: String!
 
   """Image hash in determinated network"""
   image: String!
@@ -35,11 +35,11 @@ input CreateMinerItemInput {
   """Unique code"""
   code: String!
 
+  """Description"""
+  comment: String!
+
   """Cost"""
   cost: Float!
-
-  """Description"""
-  description: String!
 
   """Image hash in determinated network"""
   image: String!
@@ -63,15 +63,29 @@ input CreateMinerItemInput {
   type: String!
 }
 
+input CreateMinerShopInput {
+  """Unique code"""
+  code: String!
+
+  """Is disabled?"""
+  disabled: Boolean!
+
+  """Level"""
+  level: Int!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
 type FighterItem {
   """Unique code"""
   code: String!
 
+  """Description"""
+  comment: String!
+
   """Cost"""
   cost: Float!
-
-  """Description"""
-  description: String!
   id: Int!
 
   """Image hash in determinated network"""
@@ -97,11 +111,11 @@ type MinerItem {
   """Unique code"""
   code: String!
 
+  """Description"""
+  comment: String!
+
   """Cost"""
   cost: Float!
-
-  """Description"""
-  description: String!
   id: Int!
 
   """Image hash in determinated network"""
@@ -126,13 +140,34 @@ type MinerItem {
   type: String!
 }
 
+type MinerShop {
+  """Unique code"""
+  code: String!
+
+  """Is disabled?"""
+  disabled: Boolean!
+  id: Int!
+
+  """Level"""
+  level: Int!
+
+  """Miner item other fields"""
+  minerItem: MinerItem
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
 type Mutation {
   createFighterItem(createFighterItemInput: CreateFighterItemInput!): FighterItem!
   createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
+  createMinerShopItem(createMinerShopInput: CreateMinerShopInput!): MinerShop!
   removeFighterItem(id: Int!): FighterItem!
   removeMinerItem(id: Int!): MinerItem!
+  removeMinerShopItem(id: Int!): MinerShop!
   updateFighterItem(updateFighterItemInput: UpdateFighterItemInput!): FighterItem!
   updateMinerItem(updateMinerItemInput: UpdateMinerItemInput!): MinerItem!
+  updateMinerShopItem(updateMinerShopInput: UpdateMinerShopInput!): MinerShop!
 }
 
 type Query {
@@ -140,17 +175,19 @@ type Query {
   fighterItems: [FighterItem!]!
   minerItem(id: Int!): MinerItem!
   minerItems: [MinerItem!]!
+  minerShopItem(id: Int!): MinerShop!
+  minerShopItems: [MinerShop!]!
 }
 
 input UpdateFighterItemInput {
   """Unique code"""
   code: String
 
+  """Description"""
+  comment: String
+
   """Cost"""
   cost: Float
-
-  """Description"""
-  description: String
   id: Int!
 
   """Image hash in determinated network"""
@@ -176,11 +213,11 @@ input UpdateMinerItemInput {
   """Unique code"""
   code: String
 
+  """Description"""
+  comment: String
+
   """Cost"""
   cost: Float
-
-  """Description"""
-  description: String
   id: Int!
 
   """Image hash in determinated network"""
@@ -200,6 +237,21 @@ input UpdateMinerItemInput {
 
   """Mining spped per hour"""
   speed: Float
+
+  """Type (COIN, USDT, NFT)"""
+  type: String
+}
+
+input UpdateMinerShopInput {
+  """Unique code"""
+  code: String
+
+  """Is disabled?"""
+  disabled: Boolean
+  id: Int!
+
+  """Level"""
+  level: Int
 
   """Type (COIN, USDT, NFT)"""
   type: String
