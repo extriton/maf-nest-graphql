@@ -1,0 +1,10 @@
+model FighterShop {
+    id          Int             @id @default(autoincrement())
+    fighterItem FighterItems    @relation(fields: [code, level, type], references: [code, level, type])
+    code        String
+    level       Int             @default(1)
+    type        FighterItemType @default(COIN)
+    disabled    Boolean         @default(true)
+
+    @@unique([code, level, type])
+}
