@@ -1,9 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { type TMinerItemType } from 'src/types/TMinerItemType';
-import { MinerItem } from 'src/miner-items/entities/miner-item.entity';
+import { type TFighterItemType } from 'src/types/TFighterItemType';
+import { FighterItem } from 'src/fighter-items/entities/fighter-item.entity';
 
 @ObjectType()
-export class MinerShop {
+export class FighterShop {
 
   @Field(() => Int)
   id: number;
@@ -15,12 +15,12 @@ export class MinerShop {
   level: number;
 
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
-  type: TMinerItemType;
+  type: TFighterItemType;
 
   @Field(() => Boolean, { description: 'Is disabled?' })
   disabled: boolean;
 
-  @Field(() => MinerItem, { description: 'Miner item other fields' })
-  minerItem: MinerItem;
+  @Field(() => FighterItem, { description: 'Fighter item other fields' })
+  fighterItem: FighterItem;
 
 }

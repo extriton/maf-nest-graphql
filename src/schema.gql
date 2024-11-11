@@ -31,6 +31,20 @@ input CreateFighterItemInput {
   type: String!
 }
 
+input CreateFighterShopInput {
+  """Unique code"""
+  code: String!
+
+  """Is disabled?"""
+  disabled: Boolean!
+
+  """Level"""
+  level: Int!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
 input CreateMinerItemInput {
   """Unique code"""
   code: String!
@@ -107,6 +121,24 @@ type FighterItem {
   type: String!
 }
 
+type FighterShop {
+  """Unique code"""
+  code: String!
+
+  """Is disabled?"""
+  disabled: Boolean!
+
+  """Fighter item other fields"""
+  fighterItem: FighterItem!
+  id: Int!
+
+  """Level"""
+  level: Int!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
 type MinerItem {
   """Unique code"""
   code: String!
@@ -152,7 +184,7 @@ type MinerShop {
   level: Int!
 
   """Miner item other fields"""
-  minerItem: MinerItem
+  minerItem: MinerItem!
 
   """Type (COIN, USDT, NFT)"""
   type: String!
@@ -160,12 +192,15 @@ type MinerShop {
 
 type Mutation {
   createFighterItem(createFighterItemInput: CreateFighterItemInput!): FighterItem!
+  createFighterShopItem(createFighterShopInput: CreateFighterShopInput!): FighterShop!
   createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
   createMinerShopItem(createMinerShopInput: CreateMinerShopInput!): MinerShop!
   removeFighterItem(id: Int!): FighterItem!
+  removeFighterShopItem(id: Int!): FighterShop!
   removeMinerItem(id: Int!): MinerItem!
   removeMinerShopItem(id: Int!): MinerShop!
   updateFighterItem(updateFighterItemInput: UpdateFighterItemInput!): FighterItem!
+  updateFighterShopItem(updateFighterShopInput: UpdateFighterShopInput!): FighterShop!
   updateMinerItem(updateMinerItemInput: UpdateMinerItemInput!): MinerItem!
   updateMinerShopItem(updateMinerShopInput: UpdateMinerShopInput!): MinerShop!
 }
@@ -173,6 +208,8 @@ type Mutation {
 type Query {
   fighterItem(id: Int!): FighterItem!
   fighterItems: [FighterItem!]!
+  fighterShopItem(id: Int!): FighterShop!
+  fighterShopItems: [FighterShop!]!
   minerItem(id: Int!): MinerItem!
   minerItems: [MinerItem!]!
   minerShopItem(id: Int!): MinerShop!
@@ -204,6 +241,21 @@ input UpdateFighterItemInput {
 
   """Rarity (common, uncommon, rare, epic, legendary)"""
   rarity: String
+
+  """Type (COIN, USDT, NFT)"""
+  type: String
+}
+
+input UpdateFighterShopInput {
+  """Unique code"""
+  code: String
+
+  """Is disabled?"""
+  disabled: Boolean
+  id: Int!
+
+  """Level"""
+  level: Int
 
   """Type (COIN, USDT, NFT)"""
   type: String

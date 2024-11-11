@@ -22,8 +22,8 @@ export class MinerShopService {
     })
   }
 
-  async findOne(id: number) {
-    const result = await this.prisma.minerShop.findUnique({
+  findOne(id: number) {
+    return this.prisma.minerShop.findUnique({
       where: {
         id
       },
@@ -31,8 +31,6 @@ export class MinerShopService {
         minerItem: true
       }
     })
-    console.log(result)
-    return result
   }
 
   update(id: number, updateMinerShopInput: UpdateMinerShopInput) {
