@@ -24,7 +24,7 @@ export class MinerItemsResolver {
   }
 
   @Mutation(() => MinerItem)
-  updateMinerItem(@Args('updateMinerItemItem') updateMinerItemInput: UpdateMinerItemInput) {
+  updateMinerItem(@Args('updateMinerItemInput') updateMinerItemInput: UpdateMinerItemInput) {
     return this.minerItemsService.update(updateMinerItemInput.id, updateMinerItemInput);
   }
 

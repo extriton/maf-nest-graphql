@@ -2,6 +2,35 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateFighterItemInput {
+  """Unique code"""
+  code: String!
+
+  """Cost"""
+  cost: Float!
+
+  """Description"""
+  description: String!
+
+  """Image hash in determinated network"""
+  image: String!
+
+  """Level"""
+  level: Int!
+
+  """Unique name"""
+  name: String!
+
+  """Next level available?"""
+  nextLevel: Boolean!
+
+  """Rarity (common, uncommon, rare, epic, legendary)"""
+  rarity: String!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
 input CreateMinerItemInput {
   """Unique code"""
   code: String!
@@ -29,6 +58,36 @@ input CreateMinerItemInput {
 
   """Mining spped per hour"""
   speed: Float!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+}
+
+type FighterItem {
+  """Unique code"""
+  code: String!
+
+  """Cost"""
+  cost: Float!
+
+  """Description"""
+  description: String!
+  id: Int!
+
+  """Image hash in determinated network"""
+  image: String!
+
+  """Level"""
+  level: Int!
+
+  """Unique name"""
+  name: String!
+
+  """Next level available?"""
+  nextLevel: Boolean!
+
+  """Rarity (common, uncommon, rare, epic, legendary)"""
+  rarity: String!
 
   """Type (COIN, USDT, NFT)"""
   type: String!
@@ -68,14 +127,49 @@ type MinerItem {
 }
 
 type Mutation {
+  createFighterItem(createFighterItemInput: CreateFighterItemInput!): FighterItem!
   createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
+  removeFighterItem(id: Int!): FighterItem!
   removeMinerItem(id: Int!): MinerItem!
-  updateMinerItem(updateMinerItemItem: UpdateMinerItemInput!): MinerItem!
+  updateFighterItem(updateFighterItemInput: UpdateFighterItemInput!): FighterItem!
+  updateMinerItem(updateMinerItemInput: UpdateMinerItemInput!): MinerItem!
 }
 
 type Query {
+  fighterItem(id: Int!): FighterItem!
+  fighterItems: [FighterItem!]!
   minerItem(id: Int!): MinerItem!
   minerItems: [MinerItem!]!
+}
+
+input UpdateFighterItemInput {
+  """Unique code"""
+  code: String
+
+  """Cost"""
+  cost: Float
+
+  """Description"""
+  description: String
+  id: Int!
+
+  """Image hash in determinated network"""
+  image: String
+
+  """Level"""
+  level: Int
+
+  """Unique name"""
+  name: String
+
+  """Next level available?"""
+  nextLevel: Boolean
+
+  """Rarity (common, uncommon, rare, epic, legendary)"""
+  rarity: String
+
+  """Type (COIN, USDT, NFT)"""
+  type: String
 }
 
 input UpdateMinerItemInput {

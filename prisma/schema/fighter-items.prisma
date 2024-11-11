@@ -1,7 +1,7 @@
 model FighterItems {
     id          Int               @id @default(autoincrement())
     code        String
-    name        String            @unique
+    name        String            @default("")
     type        FighterItemType   @default(COIN)
     level       Int               @default(1)
     nextLevel   Boolean           @default(true)

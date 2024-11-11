@@ -1,0 +1,1 @@
+export type TFighterItemRarity = ('common' | 'uncommon' | 'rare' | 'epic' | 'legendary')

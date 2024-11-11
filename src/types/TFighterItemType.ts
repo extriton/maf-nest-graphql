@@ -1,0 +1,1 @@
+export type TFighterItemType = ('COIN' | 'USDT' | 'NFT')

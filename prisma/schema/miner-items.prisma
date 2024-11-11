@@ -1,7 +1,7 @@
 model MinerItems {
     id          Int             @id @default(autoincrement())
     code        String
-    name        String          @unique
+    name        String          @default("")
     type        MinerItemType   @default(COIN)
     level       Int             @default(1)
     nextLevel   Boolean         @default(true)
