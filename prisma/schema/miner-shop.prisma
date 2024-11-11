@@ -1,0 +1,10 @@
+model MinerShop {
+    id        Int           @id @default(autoincrement())
+    minerItem MinerItems    @relation(fields: [code, level, type], references: [code, level, type])
+    code      String
+    level     Int           @default(1)
+    type      MinerItemType @default(COIN)
+    disabled  Boolean       @default(true)
+
+    @@unique([code, level, type])
+}

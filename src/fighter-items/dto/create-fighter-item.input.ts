@@ -4,18 +4,18 @@ import { type TFighterItemRarity } from 'src/types/TFighterItemRarity';
 
 @InputType()
 export class CreateFighterItemInput {
+
+  @Field(() => String, { description: 'Unique name' })
+  name: string;
   
   @Field(() => String, { description: 'Unique code' })
   code: string;
 
-  @Field(() => String, { description: 'Unique name' })
-  name: string;
+  @Field(() => Int, { description: 'Level' })
+  level: number;
 
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TFighterItemType;
-
-  @Field(() => Int, { description: 'Level' })
-  level: number;
 
   @Field(() => Boolean, { description: 'Next level available?' })
   nextLevel: boolean;
@@ -30,6 +30,6 @@ export class CreateFighterItemInput {
   image: string;
 
   @Field(() => String, { description: 'Description' })
-  description: string;
+  comment: string;
   
 }

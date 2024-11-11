@@ -4,18 +4,18 @@ import { type TMinerItemRarity } from 'src/types/TMinerItemRarity';
 
 @InputType()
 export class CreateMinerItemInput {
+
+  @Field(() => String, { description: 'Unique name' })
+  name: string;
   
   @Field(() => String, { description: 'Unique code' })
   code: string;
 
-  @Field(() => String, { description: 'Unique name' })
-  name: string;
+  @Field(() => Int, { description: 'Level' })
+  level: number;
 
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TMinerItemType;
-
-  @Field(() => Int, { description: 'Level' })
-  level: number;
 
   @Field(() => Boolean, { description: 'Next level available?' })
   nextLevel: boolean;
@@ -33,6 +33,6 @@ export class CreateMinerItemInput {
   image: string;
 
   @Field(() => String, { description: 'Description' })
-  description: string;
+  comment: string;
   
 }

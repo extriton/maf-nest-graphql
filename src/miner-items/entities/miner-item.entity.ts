@@ -8,17 +8,17 @@ export class MinerItem {
   @Field(() => Int)
   id: number;
 
-  @Field(() => String, { description: 'Unique code' })
-  code: string;
-
   @Field(() => String, { description: 'Unique name' })
   name: string;
 
-  @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
-  type: TMinerItemType;
+  @Field(() => String, { description: 'Unique code' })
+  code: string;
 
   @Field(() => Int, { description: 'Level' })
   level: number;
+
+  @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
+  type: TMinerItemType;
 
   @Field(() => Boolean, { description: 'Next level available?' })
   nextLevel: boolean;
@@ -36,6 +36,6 @@ export class MinerItem {
   image: string;
 
   @Field(() => String, { description: 'Description' })
-  description: string;
+  comment: string;
 
 }
