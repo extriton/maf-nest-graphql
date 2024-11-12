@@ -108,6 +108,40 @@ input CreateMinerShopInput {
   type: String!
 }
 
+input CreateUserInput {
+  """User balance (COIN)"""
+  coinBalance: Float!
+
+  """User banned?"""
+  isBanned: Boolean!
+
+  """Premium account?"""
+  isPremium: Boolean!
+
+  """Last claim at..."""
+  lastClaimAt: DateTime!
+
+  """User Telegram account name"""
+  name: String!
+
+  """Refer balance (COIN)"""
+  referCoinBalance: Float!
+
+  """Refer Telegram ID"""
+  referTgId: Int!
+
+  """User Telegram ID"""
+  tgId: Int!
+
+  """Total User balance (COIN) w/o spending"""
+  totalCoinBalance: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type FighterItem {
   """Unique code"""
   code: String!
@@ -234,16 +268,19 @@ type Mutation {
   createMinerInventoryItem(createMinerInventoryInput: CreateMinerInventoryInput!): MinerInventory!
   createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
   createMinerShopItem(createMinerShopInput: CreateMinerShopInput!): MinerShop!
+  createUser(createUserInput: CreateUserInput!): User!
   removeFighterItem(id: Int!): FighterItem!
   removeFighterShopItem(id: Int!): FighterShop!
   removeMinerInventoryItem(id: Int!): MinerInventory!
   removeMinerItem(id: Int!): MinerItem!
   removeMinerShopItem(id: Int!): MinerShop!
+  removeUser(id: Int!): User!
   updateFighterItem(updateFighterItemInput: UpdateFighterItemInput!): FighterItem!
   updateFighterShopItem(updateFighterShopInput: UpdateFighterShopInput!): FighterShop!
   updateMinerInventoryItem(updateMinerInventoryInput: UpdateMinerInventoryInput!): MinerInventory!
   updateMinerItem(updateMinerItemInput: UpdateMinerItemInput!): MinerItem!
   updateMinerShopItem(updateMinerShopInput: UpdateMinerShopInput!): MinerShop!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
@@ -257,6 +294,8 @@ type Query {
   minerItems: [MinerItem!]!
   minerShopItem(id: Int!): MinerShop!
   minerShopItems: [MinerShop!]!
+  user(id: Int!): User!
+  users: [User!]!
 }
 
 input UpdateFighterItemInput {
@@ -368,4 +407,67 @@ input UpdateMinerShopInput {
 
   """Type (COIN, USDT, NFT)"""
   type: String
+}
+
+input UpdateUserInput {
+  """User balance (COIN)"""
+  coinBalance: Float
+  id: Int!
+
+  """User banned?"""
+  isBanned: Boolean
+
+  """Premium account?"""
+  isPremium: Boolean
+
+  """Last claim at..."""
+  lastClaimAt: DateTime
+
+  """User Telegram account name"""
+  name: String
+
+  """Refer balance (COIN)"""
+  referCoinBalance: Float
+
+  """Refer Telegram ID"""
+  referTgId: Int
+
+  """User Telegram ID"""
+  tgId: Int
+
+  """Total User balance (COIN) w/o spending"""
+  totalCoinBalance: Float
+}
+
+type User {
+  """User balance (COIN)"""
+  coinBalance: Float!
+  id: Int!
+
+  """User banned?"""
+  isBanned: Boolean!
+
+  """Premium account?"""
+  isPremium: Boolean!
+
+  """Last claim at..."""
+  lastClaimAt: DateTime!
+
+  """Refer balance (COIN)"""
+  minerInventory: [MinerInventory!]!
+
+  """User Telegram account name"""
+  name: String!
+
+  """Refer balance (COIN)"""
+  referCoinBalance: Float!
+
+  """Refer Telegram ID"""
+  referTgId: Int!
+
+  """User Telegram ID"""
+  tgId: Int!
+
+  """Total User balance (COIN) w/o spending"""
+  totalCoinBalance: Float!
 }
