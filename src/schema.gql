@@ -49,6 +49,9 @@ input CreateMinerInventoryInput {
   """Unique code"""
   code: String!
 
+  """Last claim at..."""
+  lastClaimAt: DateTime
+
   """Level"""
   level: Int!
 
@@ -194,6 +197,9 @@ type MinerInventory {
   """Unique code"""
   code: String!
   id: Int!
+
+  """Last claim at..."""
+  lastClaimAt: DateTime!
 
   """Level"""
   level: Int!
@@ -347,6 +353,9 @@ input UpdateMinerInventoryInput {
   """Unique code"""
   code: String
   id: Int!
+
+  """Last claim at..."""
+  lastClaimAt: DateTime
 
   """Level"""
   level: Int

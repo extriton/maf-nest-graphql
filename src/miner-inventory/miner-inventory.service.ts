@@ -8,9 +8,6 @@ export class MinerInventoryService {
   constructor(private prisma: PrismaService) {}
 
   create(createMinerInventoryInput: CreateMinerInventoryInput) {
-    console.log('----------------------------');
-    console.log(createMinerInventoryInput);
-    console.log('----------------------------');
     return this.prisma.minerInventory.create({
       data: createMinerInventoryInput,
     });

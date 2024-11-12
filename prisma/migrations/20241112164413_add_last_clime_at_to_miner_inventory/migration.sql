@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "MinerInventory" ADD COLUMN     "lastClaimAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

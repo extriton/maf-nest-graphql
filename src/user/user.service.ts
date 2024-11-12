@@ -5,48 +5,55 @@ import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UserService {
-
   constructor(private prisma: PrismaService) {}
-  
+
   create(createUserInput: CreateUserInput) {
     return this.prisma.user.create({
-      data: createUserInput
-    })
+      data: createUserInput,
+    });
   }
 
   findAll() {
     return this.prisma.user.findMany({
       include: {
-        minerInventory: true
-      }
-    })
+        minerInventory: {
+          include: {
+            minerItem: true,
+          },
+        },
+      },
+    });
   }
 
   findOne(id: number) {
     return this.prisma.user.findUnique({
       where: {
-        id
+        id,
       },
       include: {
-        minerInventory: true
-      }
-    })
+        minerInventory: {
+          include: {
+            minerItem: true,
+          },
+        },
+      },
+    });
   }
 
   update(id: number, updateUserInput: UpdateUserInput) {
     return this.prisma.user.update({
       where: {
-        id
+        id,
       },
-      data: updateUserInput
-    })
+      data: updateUserInput,
+    });
   }
 
   remove(id: number) {
     return this.prisma.user.delete({
       where: {
-        id
-      }
-    })
+        id,
+      },
+    });
   }
 }

@@ -24,6 +24,9 @@ export class MinerInventory {
   @Field(() => String, { description: 'Miner item slot (none, s1, s2, s3, s4)' })
   slot: TMinerSlot;
 
+  @Field(() => Date, { description: 'Last claim at...' })
+  lastClaimAt: Date;
+
   @Field(() => MinerItem, { description: 'Miner item other fields' })
   minerItem: MinerItem;
 
