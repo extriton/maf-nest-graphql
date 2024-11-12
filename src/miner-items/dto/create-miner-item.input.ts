@@ -17,7 +17,7 @@ export class CreateMinerItemInput {
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TMinerItemType;
 
-  @Field(() => Boolean, { description: 'Next level available?' })
+  @Field(() => Boolean, { description: 'Next level available?', nullable: true })
   nextLevel: boolean;
 
   @Field(() => Float, { description: 'Mining spped per hour' })
@@ -26,13 +26,13 @@ export class CreateMinerItemInput {
   @Field(() => Float, { description: 'Cost' })
   cost: number;
 
-  @Field(() => String, { description: 'Rarity (common, uncommon, rare, epic, legendary)' })
+  @Field(() => String, { description: 'Rarity (common, uncommon, rare, epic, legendary)', nullable: true })
   rarity: TMinerItemRarity;
 
   @Field(() => String, { description: 'Image hash in determinated network' })
   image: string;
 
-  @Field(() => String, { description: 'Description' })
+  @Field(() => String, { description: 'Description', nullable: true })
   comment: string;
   
 }

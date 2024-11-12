@@ -1,6 +1,6 @@
 model MinerItems {
     id             Int             @id @default(autoincrement())
-    name           String          @default("")
+    name           String
     code           String
     level          Int             @default(1)
     type           MinerItemType   @default(COIN)
@@ -9,7 +9,7 @@ model MinerItems {
     cost           Float
     rarity         MinerItemRarity @default(common)
     image          String
-    comment        String
+    comment        String          @default("")
     minerShop      MinerShop?
     MinerInventory MinerInventory?
 

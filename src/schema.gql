@@ -110,31 +110,31 @@ input CreateMinerShopInput {
 
 input CreateUserInput {
   """User balance (COIN)"""
-  coinBalance: Float!
+  coinBalance: Float
 
   """User banned?"""
-  isBanned: Boolean!
+  isBanned: Boolean
 
   """Premium account?"""
-  isPremium: Boolean!
+  isPremium: Boolean
 
   """Last claim at..."""
-  lastClaimAt: DateTime!
+  lastClaimAt: DateTime
 
   """User Telegram account name"""
-  name: String!
+  name: String
 
   """Refer balance (COIN)"""
-  referCoinBalance: Float!
+  referCoinBalance: Float
 
   """Refer Telegram ID"""
-  referTgId: Int!
+  referTgId: Int
 
   """User Telegram ID"""
   tgId: Int!
 
   """Total User balance (COIN) w/o spending"""
-  totalCoinBalance: Float!
+  totalCoinBalance: Float
 }
 
 """

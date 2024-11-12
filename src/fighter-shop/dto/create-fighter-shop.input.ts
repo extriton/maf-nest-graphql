@@ -13,7 +13,7 @@ export class CreateFighterShopInput {
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TFighterItemType;
 
-  @Field(() => Boolean, { description: 'Is disabled?' })
+  @Field(() => Boolean, { description: 'Is disabled?', nullable: true })
   disabled: boolean;
 
 }

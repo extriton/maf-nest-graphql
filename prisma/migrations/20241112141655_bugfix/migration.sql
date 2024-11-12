@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "FighterItems" ALTER COLUMN "name" DROP DEFAULT,
+ALTER COLUMN "comment" SET DEFAULT '';
+
+-- AlterTable
+ALTER TABLE "MinerItems" ALTER COLUMN "name" DROP DEFAULT,
+ALTER COLUMN "comment" SET DEFAULT '';

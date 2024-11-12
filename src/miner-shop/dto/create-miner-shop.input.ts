@@ -13,7 +13,7 @@ export class CreateMinerShopInput {
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TMinerItemType;
 
-  @Field(() => Boolean, { description: 'Is disabled?' })
+  @Field(() => Boolean, { description: 'Is disabled?', nullable: true })
   disabled: boolean;
 
 }

@@ -1,6 +1,6 @@
 model FighterItems {
     id          Int               @id @default(autoincrement())
-    name        String            @default("")
+    name        String
     code        String
     level       Int               @default(1)
     type        FighterItemType   @default(COIN)
@@ -8,7 +8,7 @@ model FighterItems {
     cost        Float
     rarity      FighterItemRarity @default(common)
     image       String
-    comment     String
+    comment     String            @default("")
     FighterShop FighterShop?
 
     @@unique([code, level, type])

@@ -1,6 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { type TMinerItemType } from 'src/types/TMinerItemType';
 import { MinerItem } from 'src/miner-items/entities/miner-item.entity';
+import { type TMinerItemType } from 'src/types/TMinerItemType';
+import { type TMinerSlot } from 'src/types/TMinerSlot';
 
 @ObjectType()
 export class MinerInventory {
@@ -20,8 +21,8 @@ export class MinerInventory {
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TMinerItemType;
 
-  @Field(() => Boolean, { description: 'Is disabled?' })
-  disabled: boolean;
+  @Field(() => String, { description: 'Is disabled?' })
+  slot: TMinerSlot;
 
   @Field(() => MinerItem, { description: 'Miner item other fields' })
   minerItem: MinerItem;
