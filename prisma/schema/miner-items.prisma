@@ -1,17 +1,17 @@
 model MinerItems {
-    id             Int             @id @default(autoincrement())
+    id             Int              @id @default(autoincrement())
     name           String
     code           String
-    level          Int             @default(1)
-    type           MinerItemType   @default(COIN)
-    nextLevel      Boolean         @default(true)
+    level          Int              @default(1)
+    type           MinerItemType    @default(COIN)
+    nextLevel      Boolean          @default(true)
     speed          Float
     cost           Float
-    rarity         MinerItemRarity @default(common)
+    rarity         MinerItemRarity  @default(common)
     image          String
-    comment        String          @default("")
+    comment        String           @default("")
     minerShop      MinerShop?
-    MinerInventory MinerInventory?
+    MinerInventory MinerInventory[]
 
     @@unique([code, level, type])
 }

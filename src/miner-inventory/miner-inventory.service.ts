@@ -5,48 +5,50 @@ import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class MinerInventoryService {
-  
   constructor(private prisma: PrismaService) {}
 
   create(createMinerInventoryInput: CreateMinerInventoryInput) {
+    console.log('----------------------------');
+    console.log(createMinerInventoryInput);
+    console.log('----------------------------');
     return this.prisma.minerInventory.create({
-      data: createMinerInventoryInput
-    })
+      data: createMinerInventoryInput,
+    });
   }
 
   findAll() {
     return this.prisma.minerInventory.findMany({
       include: {
-        minerItem: true
-      }
-    })
+        minerItem: true,
+      },
+    });
   }
 
   findOne(id: number) {
     return this.prisma.minerInventory.findUnique({
       where: {
-        id
+        id,
       },
       include: {
-        minerItem: true
-      }
-    })
+        minerItem: true,
+      },
+    });
   }
 
   update(id: number, updateMinerInventoryInput: UpdateMinerInventoryInput) {
     return this.prisma.minerInventory.update({
       where: {
-        id
+        id,
       },
-      data: updateMinerInventoryInput
-    })
+      data: updateMinerInventoryInput,
+    });
   }
 
   remove(id: number) {
     return this.prisma.minerInventory.delete({
       where: {
-        id
-      }
-    })
+        id,
+      },
+    });
   }
 }

@@ -52,8 +52,8 @@ input CreateMinerInventoryInput {
   """Level"""
   level: Int!
 
-  """Is disabled?"""
-  slot: String!
+  """Miner item slot (none, s1, s2, s3, s4)"""
+  slot: String
 
   """Type (COIN, USDT, NFT)"""
   type: String!
@@ -201,7 +201,7 @@ type MinerInventory {
   """Miner item other fields"""
   minerItem: MinerItem!
 
-  """Is disabled?"""
+  """Miner item slot (none, s1, s2, s3, s4)"""
   slot: String!
 
   """Type (COIN, USDT, NFT)"""
@@ -351,7 +351,7 @@ input UpdateMinerInventoryInput {
   """Level"""
   level: Int
 
-  """Is disabled?"""
+  """Miner item slot (none, s1, s2, s3, s4)"""
   slot: String
 
   """Type (COIN, USDT, NFT)"""

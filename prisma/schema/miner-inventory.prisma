@@ -7,8 +7,6 @@ model MinerInventory {
     level     Int           @default(1)
     type      MinerItemType @default(COIN)
     slot      MinerSlot     @default(none)
-
-    @@unique([code, level, type])
 }
 
 enum MinerSlot {

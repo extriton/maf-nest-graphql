@@ -17,7 +17,7 @@ export class CreateMinerInventoryInput {
   @Field(() => String, { description: 'Type (COIN, USDT, NFT)' })
   type: TMinerItemType;
 
-  @Field(() => String, { description: 'Is disabled?' })
+  @Field(() => String, { description: 'Miner item slot (none, s1, s2, s3, s4)', nullable: true })
   slot: TMinerSlot;
 
 }
