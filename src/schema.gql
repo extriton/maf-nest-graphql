@@ -7,7 +7,7 @@ input CreateFighterItemInput {
   code: String!
 
   """Description"""
-  comment: String!
+  comment: String
 
   """Cost"""
   cost: Float!
@@ -22,10 +22,10 @@ input CreateFighterItemInput {
   name: String!
 
   """Next level available?"""
-  nextLevel: Boolean!
+  nextLevel: Boolean
 
   """Rarity (common, uncommon, rare, epic, legendary)"""
-  rarity: String!
+  rarity: String
 
   """Type (COIN, USDT, NFT)"""
   type: String!
@@ -36,7 +36,7 @@ input CreateFighterShopInput {
   code: String!
 
   """Is disabled?"""
-  disabled: Boolean!
+  disabled: Boolean
 
   """Level"""
   level: Int!
@@ -49,11 +49,11 @@ input CreateMinerInventoryInput {
   """Unique code"""
   code: String!
 
-  """Is disabled?"""
-  disabled: Boolean!
-
   """Level"""
   level: Int!
+
+  """Is disabled?"""
+  slot: String!
 
   """Type (COIN, USDT, NFT)"""
   type: String!
@@ -67,7 +67,7 @@ input CreateMinerItemInput {
   code: String!
 
   """Description"""
-  comment: String!
+  comment: String
 
   """Cost"""
   cost: Float!
@@ -82,10 +82,10 @@ input CreateMinerItemInput {
   name: String!
 
   """Next level available?"""
-  nextLevel: Boolean!
+  nextLevel: Boolean
 
   """Rarity (common, uncommon, rare, epic, legendary)"""
-  rarity: String!
+  rarity: String
 
   """Mining spped per hour"""
   speed: Float!
@@ -99,7 +99,7 @@ input CreateMinerShopInput {
   code: String!
 
   """Is disabled?"""
-  disabled: Boolean!
+  disabled: Boolean
 
   """Level"""
   level: Int!
@@ -193,9 +193,6 @@ type FighterShop {
 type MinerInventory {
   """Unique code"""
   code: String!
-
-  """Is disabled?"""
-  disabled: Boolean!
   id: Int!
 
   """Level"""
@@ -203,6 +200,9 @@ type MinerInventory {
 
   """Miner item other fields"""
   minerItem: MinerItem!
+
+  """Is disabled?"""
+  slot: String!
 
   """Type (COIN, USDT, NFT)"""
   type: String!
@@ -346,13 +346,13 @@ input UpdateFighterShopInput {
 input UpdateMinerInventoryInput {
   """Unique code"""
   code: String
-
-  """Is disabled?"""
-  disabled: Boolean
   id: Int!
 
   """Level"""
   level: Int
+
+  """Is disabled?"""
+  slot: String
 
   """Type (COIN, USDT, NFT)"""
   type: String
