@@ -6,6 +6,7 @@ import { join } from "path";
 import { FighterItemsModule } from './fighter-items/fighter-items.module';
 import { MinerShopModule } from './miner-shop/miner-shop.module';
 import { FighterShopModule } from './fighter-shop/fighter-shop.module';
+import { MinerInventoryModule } from './miner-inventory/miner-inventory.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { FighterShopModule } from './fighter-shop/fighter-shop.module';
     FighterItemsModule,
     MinerShopModule,
     FighterShopModule,
+    MinerInventoryModule,
   ],
   controllers: [],
   providers: [],

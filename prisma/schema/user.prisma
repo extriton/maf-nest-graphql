@@ -7,12 +7,13 @@ model User {
     isPremium        Boolean  @default(false) @map("is_premium")
     isBanned         Boolean  @default(false) @map("is_banned")
     lastClaimAt      DateTime @default(now())
-    referTgId        Int      @map("refer_tg_id")
+    referTgId        Int      @default(0) @map("refer_tg_id")
     referCoinBalance Float    @default(0)
 
-    payments Payment[]
-    slots    Slot[]
-    inventories Inventory[]
+    minerInventory MinerInventory[]
+    // payments Payment[]
+    // slots    Slot[]
+    // inventories Inventory[]
 
     @@map("Users")
 }

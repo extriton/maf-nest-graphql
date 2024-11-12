@@ -45,6 +45,23 @@ input CreateFighterShopInput {
   type: String!
 }
 
+input CreateMinerInventoryInput {
+  """Unique code"""
+  code: String!
+
+  """Is disabled?"""
+  disabled: Boolean!
+
+  """Level"""
+  level: Int!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+
+  """User ID"""
+  userId: Int!
+}
+
 input CreateMinerItemInput {
   """Unique code"""
   code: String!
@@ -139,6 +156,27 @@ type FighterShop {
   type: String!
 }
 
+type MinerInventory {
+  """Unique code"""
+  code: String!
+
+  """Is disabled?"""
+  disabled: Boolean!
+  id: Int!
+
+  """Level"""
+  level: Int!
+
+  """Miner item other fields"""
+  minerItem: MinerItem!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+
+  """User ID"""
+  userId: Int!
+}
+
 type MinerItem {
   """Unique code"""
   code: String!
@@ -193,14 +231,17 @@ type MinerShop {
 type Mutation {
   createFighterItem(createFighterItemInput: CreateFighterItemInput!): FighterItem!
   createFighterShopItem(createFighterShopInput: CreateFighterShopInput!): FighterShop!
+  createMinerInventoryItem(createMinerInventoryInput: CreateMinerInventoryInput!): MinerInventory!
   createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
   createMinerShopItem(createMinerShopInput: CreateMinerShopInput!): MinerShop!
   removeFighterItem(id: Int!): FighterItem!
   removeFighterShopItem(id: Int!): FighterShop!
+  removeMinerInventoryItem(id: Int!): MinerInventory!
   removeMinerItem(id: Int!): MinerItem!
   removeMinerShopItem(id: Int!): MinerShop!
   updateFighterItem(updateFighterItemInput: UpdateFighterItemInput!): FighterItem!
   updateFighterShopItem(updateFighterShopInput: UpdateFighterShopInput!): FighterShop!
+  updateMinerInventoryItem(updateMinerInventoryInput: UpdateMinerInventoryInput!): MinerInventory!
   updateMinerItem(updateMinerItemInput: UpdateMinerItemInput!): MinerItem!
   updateMinerShopItem(updateMinerShopInput: UpdateMinerShopInput!): MinerShop!
 }
@@ -210,6 +251,8 @@ type Query {
   fighterItems: [FighterItem!]!
   fighterShopItem(id: Int!): FighterShop!
   fighterShopItems: [FighterShop!]!
+  minerInventoryItem(id: Int!): MinerInventory!
+  minerInventoryItems: [MinerInventory!]!
   minerItem(id: Int!): MinerItem!
   minerItems: [MinerItem!]!
   minerShopItem(id: Int!): MinerShop!
@@ -259,6 +302,24 @@ input UpdateFighterShopInput {
 
   """Type (COIN, USDT, NFT)"""
   type: String
+}
+
+input UpdateMinerInventoryInput {
+  """Unique code"""
+  code: String
+
+  """Is disabled?"""
+  disabled: Boolean
+  id: Int!
+
+  """Level"""
+  level: Int
+
+  """Type (COIN, USDT, NFT)"""
+  type: String
+
+  """User ID"""
+  userId: Int
 }
 
 input UpdateMinerItemInput {
