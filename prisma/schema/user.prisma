@@ -1,7 +1,7 @@
 model User {
     id               Int      @id @default(autoincrement())
     tgId             Int      @unique @map("tg_id")
-    name             String
+    name             String   @default("")
     coinBalance      Float    @default(0) @map("coin_balance")
     totalCoinBalance Float    @default(0) @map("total_coin_balance")
     isPremium        Boolean  @default(false) @map("is_premium")

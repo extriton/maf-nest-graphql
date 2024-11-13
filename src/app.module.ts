@@ -8,6 +8,7 @@ import { MinerShopModule } from './miner-shop/miner-shop.module';
 import { FighterShopModule } from './fighter-shop/fighter-shop.module';
 import { MinerInventoryModule } from './miner-inventory/miner-inventory.module';
 import { UserModule } from './user/user.module';
+import { FighterInventoryModule } from './fighter-inventory/fighter-inventory.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserModule } from './user/user.module';
     FighterShopModule,
     MinerInventoryModule,
     UserModule,
+    FighterInventoryModule,
   ],
   controllers: [],
   providers: [],
