@@ -12,6 +12,7 @@ model User {
 
     minerInventory   MinerInventory[]
     FighterInventory FighterInventory[]
+    Payment          Payment[]
 
     @@map("Users")
 }
