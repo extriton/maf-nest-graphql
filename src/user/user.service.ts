@@ -2,15 +2,30 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { PrismaService } from 'src/prisma.service';
+import { minerBonusInventory } from './consts/miner-bonus-inventory';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  create(createUserInput: CreateUserInput) {
-    return this.prisma.user.create({
+  async create(createUserInput: CreateUserInput) {
+    const createdUser = await this.prisma.user.create({
       data: createUserInput,
     });
+
+    for (const minerBonusItem of minerBonusInventory) {
+      await this.prisma.minerInventory.create({
+        data: {
+          userId: createdUser.id,
+          code: minerBonusItem.code,
+          level: minerBonusItem.level,
+          type: minerBonusItem.type,
+          slot: minerBonusItem.slot
+        }
+      });
+    }
+
+    return createdUser;
   }
 
   findAll() {
