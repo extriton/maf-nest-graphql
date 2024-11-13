@@ -1,15 +1,17 @@
 model FighterItems {
-    id          Int               @id @default(autoincrement())
-    name        String
-    code        String
-    level       Int               @default(1)
-    type        FighterItemType   @default(COIN)
-    nextLevel   Boolean           @default(true)
-    cost        Float
-    rarity      FighterItemRarity @default(common)
-    image       String
-    comment     String            @default("")
-    FighterShop FighterShop?
+    id               Int                @id @default(autoincrement())
+    name             String
+    code             String
+    level            Int                @default(1)
+    type             FighterItemType    @default(COIN)
+    nextLevel        Boolean            @default(true)
+    cost             Float
+    rarity           FighterItemRarity  @default(common)
+    image            String
+    comment          String             @default("")
+    
+    FighterShop      FighterShop?
+    FighterInventory FighterInventory[]
 
     @@unique([code, level, type])
 }

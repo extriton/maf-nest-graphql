@@ -10,10 +10,8 @@ model User {
     referTgId        Int      @default(0) @map("refer_tg_id")
     referCoinBalance Float    @default(0)
 
-    minerInventory MinerInventory[]
-    // payments Payment[]
-    // slots    Slot[]
-    // inventories Inventory[]
+    minerInventory   MinerInventory[]
+    FighterInventory FighterInventory[]
 
     @@map("Users")
 }

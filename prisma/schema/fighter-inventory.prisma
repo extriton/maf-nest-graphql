@@ -1,0 +1,9 @@
+model FighterInventory {
+    id          Int             @id @default(autoincrement())
+    user        User            @relation(fields: [userId], references: [id])
+    userId      Int             @map("user_id")
+    fighterItem FighterItems    @relation(fields: [code, level, type], references: [code, level, type])
+    code        String
+    level       Int             @default(1)
+    type        FighterItemType @default(COIN)
+}
