@@ -11,8 +11,8 @@ model User {
     referCoinBalance Float    @default(0)
 
     minerInventory   MinerInventory[]
-    FighterInventory FighterInventory[]
-    Payment          Payment[]
+    fighterInventory FighterInventory[]
+    payments         Payment[]
 
     @@map("Users")
 }

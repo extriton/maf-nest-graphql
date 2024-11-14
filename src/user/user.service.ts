@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { PrismaService } from 'src/prisma.service';
-import { minerBonusInventory } from './consts/miner-bonus-inventory';
+import { minerBonusInventory } from 'src/config/config';
 
 @Injectable()
 export class UserService {
@@ -36,6 +36,12 @@ export class UserService {
             minerItem: true,
           },
         },
+        fighterInventory: {
+          include: {
+            fighterItem: true
+          }
+        },
+        payments: true
       },
     });
   }
@@ -51,6 +57,12 @@ export class UserService {
             minerItem: true,
           },
         },
+        fighterInventory: {
+          include: {
+            fighterItem: true
+          }
+        },
+        payments: true
       },
     });
   }

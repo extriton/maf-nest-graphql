@@ -2,6 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateFighterInventoryInput {
+  """Unique code"""
+  code: String!
+
+  """Level"""
+  level: Int!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+
+  """User ID"""
+  userId: Int!
+}
+
 input CreateFighterItemInput {
   """Unique code"""
   code: String!
@@ -145,6 +159,24 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type FighterInventory {
+  """Unique code"""
+  code: String!
+
+  """Fighter item other fields"""
+  fighterItem: FighterItem!
+  id: Int!
+
+  """Level"""
+  level: Int!
+
+  """Type (COIN, USDT, NFT)"""
+  type: String!
+
+  """User ID"""
+  userId: Int!
+}
+
 type FighterItem {
   """Unique code"""
   code: String!
@@ -269,18 +301,22 @@ type MinerShop {
 }
 
 type Mutation {
+  createFighterInventoryItem(createFighterInventoryInput: CreateFighterInventoryInput!): FighterInventory!
   createFighterItem(createFighterItemInput: CreateFighterItemInput!): FighterItem!
   createFighterShopItem(createFighterShopInput: CreateFighterShopInput!): FighterShop!
   createMinerInventoryItem(createMinerInventoryInput: CreateMinerInventoryInput!): MinerInventory!
   createMinerItem(createMinerItemInput: CreateMinerItemInput!): MinerItem!
   createMinerShopItem(createMinerShopInput: CreateMinerShopInput!): MinerShop!
   createUser(createUserInput: CreateUserInput!): User!
+  removeFighterInventoryItem(id: Int!): FighterInventory!
   removeFighterItem(id: Int!): FighterItem!
   removeFighterShopItem(id: Int!): FighterShop!
   removeMinerInventoryItem(id: Int!): MinerInventory!
   removeMinerItem(id: Int!): MinerItem!
   removeMinerShopItem(id: Int!): MinerShop!
+  removePayment(id: String!): Payment!
   removeUser(id: Int!): User!
+  updateFighterInventoryItem(updateFighterInventoryInput: UpdateFighterInventoryInput!): FighterInventory!
   updateFighterItem(updateFighterItemInput: UpdateFighterItemInput!): FighterItem!
   updateFighterShopItem(updateFighterShopInput: UpdateFighterShopInput!): FighterShop!
   updateMinerInventoryItem(updateMinerInventoryInput: UpdateMinerInventoryInput!): MinerInventory!
@@ -289,7 +325,29 @@ type Mutation {
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
+type Payment {
+  """Payment amount"""
+  amount: Float!
+
+  """Payment currency"""
+  currency: String!
+
+  """ID (cuid)"""
+  id: String!
+
+  """Payment status"""
+  status: String!
+
+  """Payment type"""
+  type: Int!
+
+  """User ID"""
+  userId: Int!
+}
+
 type Query {
+  fighterInventoryItem(id: Int!): FighterInventory!
+  fighterInventoryItems: [FighterInventory!]!
   fighterItem(id: Int!): FighterItem!
   fighterItems: [FighterItem!]!
   fighterShopItem(id: Int!): FighterShop!
@@ -300,8 +358,25 @@ type Query {
   minerItems: [MinerItem!]!
   minerShopItem(id: Int!): MinerShop!
   minerShopItems: [MinerShop!]!
+  payment(id: String!): Payment!
+  payments: [Payment!]!
   user(id: Int!): User!
   users: [User!]!
+}
+
+input UpdateFighterInventoryInput {
+  """Unique code"""
+  code: String
+  id: Int!
+
+  """Level"""
+  level: Int
+
+  """Type (COIN, USDT, NFT)"""
+  type: String
+
+  """User ID"""
+  userId: Int
 }
 
 input UpdateFighterItemInput {
@@ -451,6 +526,9 @@ input UpdateUserInput {
 type User {
   """User balance (COIN)"""
   coinBalance: Float!
+
+  """Fighter inventory items"""
+  fighterInventory: [FighterInventory!]!
   id: Int!
 
   """User banned?"""
@@ -462,11 +540,14 @@ type User {
   """Last claim at..."""
   lastClaimAt: DateTime!
 
-  """Refer balance (COIN)"""
+  """Miner inventory items"""
   minerInventory: [MinerInventory!]!
 
   """User Telegram account name"""
   name: String!
+
+  """User payment orders"""
+  payments: [Payment!]!
 
   """Refer balance (COIN)"""
   referCoinBalance: Float!

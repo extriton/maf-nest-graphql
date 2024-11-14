@@ -1,5 +1,7 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
+import { FighterInventory } from 'src/fighter-inventory/entities/fighter-inventory.entity';
 import { MinerInventory } from 'src/miner-inventory/entities/miner-inventory.entity';
+import { Payment } from 'src/payments/entities/payment.entity';
 
 @ObjectType()
 export class User {
@@ -34,7 +36,13 @@ export class User {
   @Field(() => Float, { description: 'Refer balance (COIN)' })
   referCoinBalance: number;
 
-  @Field(() => [MinerInventory], { description: 'Refer balance (COIN)' })
+  @Field(() => [MinerInventory], { description: 'Miner inventory items' })
   minerInventory: MinerInventory;
+
+  @Field(() => [FighterInventory], { description: 'Fighter inventory items' })
+  fighterInventory: FighterInventory;
+
+  @Field(() => [Payment], { description: 'User payment orders' })
+  payments: Payment;
 
 }
