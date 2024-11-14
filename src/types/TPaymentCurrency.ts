@@ -1,1 +1,0 @@
-export type TPaymentCurrency = ('COIN' | 'USDT')

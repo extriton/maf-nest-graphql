@@ -9,7 +9,7 @@ export class OrderService {
 
   create(createOrderInput: CreateOrderInput) {
     return this.prisma.order.create({
-      data: createOrderInput,
+      data: createOrderInput
     });
   }
 

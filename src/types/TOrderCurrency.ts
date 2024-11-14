@@ -1,1 +1,1 @@
-export type TOrderCurrency = ('COIN' | 'USDT')
+export type TOrderCurrency = ('TON' | 'USDT')

@@ -9,16 +9,19 @@ export class CreateOrderInput {
   @Field(() => Int, { description: 'User ID' })
   userId: number;
 
-  @Field(() => String, { description: 'Order type' })                                   // premium
+  @Field(() => String, { description: 'Order type', nullable: true })                                   // premium
   type: TOrderType;
 
-  @Field(() => String, { description: 'Order currency' })                               // TON, USDT
+  @Field(() => String, { description: 'Order currency', nullable: true })                               // TON, USDT
   currency: TOrderCurrency;
 
   @Field(() => Float, { description: 'Order amount' })
   amount: number;
 
-  @Field(() => String, { description: 'Order status' })                                 // created, processed
+  @Field(() => String, { description: 'Order status', nullable: true })                                 // created, processed
   status: TOrderStatus;
+
+  @Field(() => Date, { description: 'Order created at', nullable: true })
+  createdAt?: Date;
 
 }

@@ -41,7 +41,7 @@ export class UserService {
             fighterItem: true
           }
         },
-        payments: true
+        orders: true
       },
     });
   }
@@ -62,7 +62,7 @@ export class UserService {
             fighterItem: true
           }
         },
-        payments: true
+        orders: true
       },
     });
   }
