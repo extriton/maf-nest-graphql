@@ -10,6 +10,7 @@ import { MinerInventoryModule } from './miner-inventory/miner-inventory.module';
 import { UserModule } from './user/user.module';
 import { FighterInventoryModule } from './fighter-inventory/fighter-inventory.module';
 import { PaymentsModule } from './payments/payments.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PaymentsModule } from './payments/payments.module';
     UserModule,
     FighterInventoryModule,
     PaymentsModule,
+    OrderModule,
   ],
   controllers: [],
   providers: [],

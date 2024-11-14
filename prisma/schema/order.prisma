@@ -1,0 +1,26 @@
+model Order {
+    id        Int           @id @default(autoincrement())
+    user      User          @relation(fields: [userId], references: [id])
+    userId    Int           @map("user_id")
+    type      OrderType     @default(premium)
+    currency  OrderCurrency @default(TON)
+    amount    Float         @default(0)
+    status    OrderStatus   @default(created)
+    createdAt DateTime      @default(now())
+
+    @@map("Orders")
+}
+
+enum OrderType {
+    premium
+}
+
+enum OrderCurrency {
+    TON
+    USDT
+}
+
+enum OrderStatus {
+    created
+    processed
+}
