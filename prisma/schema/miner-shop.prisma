@@ -7,4 +7,5 @@ model MinerShop {
     disabled  Boolean       @default(true)
 
     @@unique([code, level, type])
+    @@map("miner_shop")
 }

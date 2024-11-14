@@ -14,5 +14,5 @@ model User {
     fighterInventory FighterInventory[]
     orders           Order[]
 
-    @@map("Users")
+    @@map("users")
 }

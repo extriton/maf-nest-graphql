@@ -14,24 +14,27 @@ CREATE TYPE "MinerItemType" AS ENUM ('COIN', 'USDT', 'NFT');
 CREATE TYPE "MinerItemRarity" AS ENUM ('common', 'uncommon', 'rare', 'epic', 'legendary');
 
 -- CreateEnum
-CREATE TYPE "PaymentCurrency" AS ENUM ('TON', 'USDT');
+CREATE TYPE "OrderType" AS ENUM ('premium');
+
+-- CreateEnum
+CREATE TYPE "OrderCurrency" AS ENUM ('TON', 'USDT');
 
 -- CreateEnum
 CREATE TYPE "OrderStatus" AS ENUM ('created', 'processed');
 
 -- CreateTable
-CREATE TABLE "FighterInventory" (
+CREATE TABLE "fighter_inventory" (
     "id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
     "code" TEXT NOT NULL,
     "level" INTEGER NOT NULL DEFAULT 1,
     "type" "FighterItemType" NOT NULL DEFAULT 'COIN',
 
-    CONSTRAINT "FighterInventory_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "fighter_inventory_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "FighterItems" (
+CREATE TABLE "fighter_items" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "code" TEXT NOT NULL,
@@ -43,22 +46,22 @@ CREATE TABLE "FighterItems" (
     "image" TEXT NOT NULL,
     "comment" TEXT NOT NULL DEFAULT '',
 
-    CONSTRAINT "FighterItems_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "fighter_items_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "FighterShop" (
+CREATE TABLE "fighter_shop" (
     "id" SERIAL NOT NULL,
     "code" TEXT NOT NULL,
     "level" INTEGER NOT NULL DEFAULT 1,
     "type" "FighterItemType" NOT NULL DEFAULT 'COIN',
     "disabled" BOOLEAN NOT NULL DEFAULT true,
 
-    CONSTRAINT "FighterShop_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "fighter_shop_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "MinerInventory" (
+CREATE TABLE "miner_inventory" (
     "id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
     "code" TEXT NOT NULL,
@@ -67,11 +70,11 @@ CREATE TABLE "MinerInventory" (
     "slot" "MinerSlot" NOT NULL DEFAULT 'none',
     "lastClaimAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "MinerInventory_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "miner_inventory_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "MinerItems" (
+CREATE TABLE "miner_items" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "code" TEXT NOT NULL,
@@ -84,34 +87,35 @@ CREATE TABLE "MinerItems" (
     "image" TEXT NOT NULL,
     "comment" TEXT NOT NULL DEFAULT '',
 
-    CONSTRAINT "MinerItems_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "miner_items_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "MinerShop" (
+CREATE TABLE "miner_shop" (
     "id" SERIAL NOT NULL,
     "code" TEXT NOT NULL,
     "level" INTEGER NOT NULL DEFAULT 1,
     "type" "MinerItemType" NOT NULL DEFAULT 'COIN',
     "disabled" BOOLEAN NOT NULL DEFAULT true,
 
-    CONSTRAINT "MinerShop_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "miner_shop_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Payments" (
-    "id" TEXT NOT NULL,
+CREATE TABLE "orders" (
+    "id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
-    "type" INTEGER NOT NULL DEFAULT 0,
-    "currency" "PaymentCurrency" NOT NULL DEFAULT 'TON',
-    "ammount" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "type" "OrderType" NOT NULL DEFAULT 'premium',
+    "currency" "OrderCurrency" NOT NULL DEFAULT 'TON',
+    "amount" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "status" "OrderStatus" NOT NULL DEFAULT 'created',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "Payments_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Users" (
+CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
     "tg_id" INTEGER NOT NULL,
     "name" TEXT NOT NULL DEFAULT '',
@@ -123,49 +127,49 @@ CREATE TABLE "Users" (
     "refer_tg_id" INTEGER NOT NULL DEFAULT 0,
     "referCoinBalance" DOUBLE PRECISION NOT NULL DEFAULT 0,
 
-    CONSTRAINT "Users_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "WorkingData" (
+CREATE TABLE "working_data" (
     "id" SERIAL NOT NULL,
     "last_ton_tx_at" INTEGER NOT NULL,
 
-    CONSTRAINT "WorkingData_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "working_data_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "FighterItems_code_level_type_key" ON "FighterItems"("code", "level", "type");
+CREATE UNIQUE INDEX "fighter_items_code_level_type_key" ON "fighter_items"("code", "level", "type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "FighterShop_code_level_type_key" ON "FighterShop"("code", "level", "type");
+CREATE UNIQUE INDEX "fighter_shop_code_level_type_key" ON "fighter_shop"("code", "level", "type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "MinerItems_code_level_type_key" ON "MinerItems"("code", "level", "type");
+CREATE UNIQUE INDEX "miner_items_code_level_type_key" ON "miner_items"("code", "level", "type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "MinerShop_code_level_type_key" ON "MinerShop"("code", "level", "type");
+CREATE UNIQUE INDEX "miner_shop_code_level_type_key" ON "miner_shop"("code", "level", "type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Users_tg_id_key" ON "Users"("tg_id");
+CREATE UNIQUE INDEX "users_tg_id_key" ON "users"("tg_id");
 
 -- AddForeignKey
-ALTER TABLE "FighterInventory" ADD CONSTRAINT "FighterInventory_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "fighter_inventory" ADD CONSTRAINT "fighter_inventory_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "FighterInventory" ADD CONSTRAINT "FighterInventory_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "FighterItems"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "fighter_inventory" ADD CONSTRAINT "fighter_inventory_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "fighter_items"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "FighterShop" ADD CONSTRAINT "FighterShop_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "FighterItems"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "fighter_shop" ADD CONSTRAINT "fighter_shop_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "fighter_items"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MinerInventory" ADD CONSTRAINT "MinerInventory_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "miner_inventory" ADD CONSTRAINT "miner_inventory_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MinerInventory" ADD CONSTRAINT "MinerInventory_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "MinerItems"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "miner_inventory" ADD CONSTRAINT "miner_inventory_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "miner_items"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MinerShop" ADD CONSTRAINT "MinerShop_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "MinerItems"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "miner_shop" ADD CONSTRAINT "miner_shop_code_level_type_fkey" FOREIGN KEY ("code", "level", "type") REFERENCES "miner_items"("code", "level", "type") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Payments" ADD CONSTRAINT "Payments_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "orders" ADD CONSTRAINT "orders_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

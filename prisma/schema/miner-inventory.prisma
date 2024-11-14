@@ -8,6 +8,8 @@ model MinerInventory {
     type        MinerItemType @default(COIN)
     slot        MinerSlot     @default(none)
     lastClaimAt DateTime      @default(now())
+
+    @@map("miner_inventory")
 }
 
 enum MinerSlot {

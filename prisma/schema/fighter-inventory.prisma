@@ -6,4 +6,6 @@ model FighterInventory {
     code        String
     level       Int             @default(1)
     type        FighterItemType @default(COIN)
+
+    @@map("fighter_inventory")
 }

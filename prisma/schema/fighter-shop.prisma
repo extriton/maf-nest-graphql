@@ -7,4 +7,5 @@ model FighterShop {
     disabled    Boolean         @default(true)
 
     @@unique([code, level, type])
+    @@map("fighter_shop")
 }

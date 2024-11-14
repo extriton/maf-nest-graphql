@@ -8,7 +8,7 @@ model Order {
     status    OrderStatus   @default(created)
     createdAt DateTime      @default(now())
 
-    @@map("Orders")
+    @@map("orders")
 }
 
 enum OrderType {
